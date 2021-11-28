@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -14,8 +13,10 @@ def connect(url):
     try:
         driver_options = Options()
         driver_options.add_argument('--headless')
-        driver = webdriver.Chrome(options=driver_options)
-        # driver = webdriver.Chrome()
+        driver_options.add_argument('log-level=3')
+        driver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome('chromedriver.exe', options=driver_options)
+        # driver = webdriver.Chrome('chromedriver.exe')
         driver.get(url)
 
         return driver
